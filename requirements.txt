@@ -2,7 +2,6 @@ streamlit
 pandas
 nltk
 scikit-learn
-imbalanced-learn
 numpy
 pickle5
 imbalanced-learn
