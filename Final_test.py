@@ -165,11 +165,9 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     return result
 
-# Load the SVM model
-def load_model():
-    model = joblib.load('svm_model.pkl')
-    vectorizer = joblib.load('tfidf_vectorizer.pkl')
-    return model, vectorizer
+# Load the saved SVM model
+with open('svm_model.pkl', 'rb') as file:
+    svm_model = pickle.load(file)
 
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
