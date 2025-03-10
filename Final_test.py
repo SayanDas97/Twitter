@@ -5,9 +5,8 @@ import nltk
 import math
 from datetime import datetime
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from sklearn.svm import SVC
-from sklearn.feature_extraction.text import TfidfVectorizer
-import joblib
+import pickle
+from sklearn.preprocessing import StandardScaler
 
 # Download the VADER lexicon (one-time only)
 nltk.download('vader_lexicon')
@@ -165,9 +164,11 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     return result
 
-# Load the saved SVM model
-with open('svm_model.pkl', 'rb') as file:
-    svm_model = pickle.load(file)
+# Load the SVM model
+def load_model():
+    with open('svm_model.pkl', 'rb') as file:
+        svm_model = pickle.load(file)
+    return svm_model
 
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
@@ -202,13 +203,6 @@ if submitted:
     # Process the tweet
     result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
-    # Make prediction using the loaded model
-    prediction = svm_model.predict(input_data)
-
-    # Map the prediction to the corresponding class label
-    class_labels = ['Low', 'No', 'Moderate', 'High']
-    predicted_class = class_labels[prediction[0]]
-
     # Display the results
     st.subheader("Tweet Analysis Results")
     st.write(f"**Word Count:** {result['Word Count']}")
@@ -232,8 +226,24 @@ if submitted:
     st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
     st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}")
 
+    # Load the SVM model
+    svm_model = load_model()
 
+    # Prepare the input for the SVM model
+    input_data = pd.DataFrame({
+        'Likes': [likes],
+        'Retweets': [retweets],
+        'Comments': [comments],
+        'Quotes': [quotes],
+        'Views': [views],
+        'Followers': [followers],
+        'Followings': [followings],
+        'Verified': [1 if verified_status else 0],
+        # Add other features as needed
+    })
 
+    # Make prediction using the SVM model
+    prediction = svm_model.predict(input_data)
 
     # Map the prediction to the corresponding class label
     class_labels = ['Low', 'No', 'Moderate', 'High']
