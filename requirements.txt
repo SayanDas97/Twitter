@@ -6,3 +6,4 @@ numpy
 imbalanced-learn
 pickle
 math
+joblib
