@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 
 # Load the saved SVM model
 with open('svm_model.pkl', 'rb') as file:
-    svm_model = pickle.load(file)
+    svm_model = pickle.load(svm_model.pkl)
 
 # Title of the app
 st.title("Twitter Analytics Input Form")
