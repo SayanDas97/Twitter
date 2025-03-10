@@ -85,5 +85,5 @@ resampled.to_csv('smote_tweet_data.csv' , index=False)
 #y_resampled.to_csv('smote_tweet_data_target.csv', index=False)
 
 #save the classification model
-#with open('svm_model_pkl', 'wb') as files:
+with open('svm_model_pkl', 'wb') as files:
     #pickle.dump(svm_model, files)
