@@ -55,7 +55,7 @@ if submitted:
     prediction = svm_model.predict(input_data)
 
     # Map the prediction to the corresponding class label
-    class_labels = ['Low', 'No', 'Moderate', 'High', 'Severe']
+    class_labels = ['Low', 'No', 'Moderate', 'High']
     predicted_class = class_labels[prediction[0]]
 
     # Display the submitted data and prediction
