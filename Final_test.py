@@ -202,6 +202,13 @@ if submitted:
     # Process the tweet
     result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
+    # Make prediction using the loaded model
+    prediction = svm_model.predict(input_data)
+
+    # Map the prediction to the corresponding class label
+    class_labels = ['Low', 'No', 'Moderate', 'High']
+    predicted_class = class_labels[prediction[0]]
+
     # Display the results
     st.subheader("Tweet Analysis Results")
     st.write(f"**Word Count:** {result['Word Count']}")
@@ -225,14 +232,8 @@ if submitted:
     st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
     st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}")
 
-    # Load the SVM model and vectorizer
-    model, vectorizer = load_model()
 
-    # Prepare the input for the SVM model
-    input_data = vectorizer.transform([tweet_body])
 
-    # Make a prediction using the SVM model
-    prediction = model.predict(input_data)
 
     # Map the prediction to the corresponding class label
     class_labels = ['Low', 'No', 'Moderate', 'High']
