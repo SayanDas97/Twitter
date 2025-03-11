@@ -154,7 +154,11 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     result['Follower Following Ratio'] = follower_following_ratio
 
     #FFR to Misinfo
-    ffr_to_misinfo = round(1 - math.exp(-0.8 * abs(math.log((followers if followers > 0 else 1) / (followings if followings > 0 else 1)))), 4)
+    ffr_to_misinfo = (
+    round(1 - math.exp(-0.8 * abs(math.log(followers / followings))), 4) 
+    if (followers > 0 and followings > 0) 
+    else 1
+    )
     result['Follower Following Ratio to misinfo'] = ffr_to_misinfo
 
     #VA freshness score
