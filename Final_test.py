@@ -171,7 +171,7 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 def load_model():
     with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
-    return svm_model
+return svm_model
 """
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
