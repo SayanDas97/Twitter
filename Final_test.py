@@ -194,7 +194,7 @@ df_data = pd.DataFrame(data)
 #svm_model = load_model()
 """
 # Prepare the input for the SVM model
-input_data = pd.DataFrame({
+df_data = pd.DataFrame({
     "Clickbait_Score" : [Clickbait_Score],
     "Hyperbole_Score": [Hyperbole_Score],
     "HC_Sentiment": [HC_Sentiment],
