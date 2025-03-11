@@ -206,8 +206,7 @@ with st.form("twitter_form"):
             'VA_Freshness_Score': [VA_Freshness_Score]
         })
 """
-
-    data = {0.3, 0.8, 0.6, 0.9, 0.3, 0.8}
+data = {0.3, 0.8, 0.6, 0.9, 0.3, 0.8}
         # Make prediction using the SVM model
         svm_model = load_model()
         prediction = svm_model.predict(data)
