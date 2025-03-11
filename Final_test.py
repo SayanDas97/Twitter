@@ -235,14 +235,14 @@ if submitted:
 
     # Prepare the input for the SVM model
     input_data = pd.DataFrame({
-        'Likes': [likes],
-        'Retweets': [retweets],
-        'Comments': [comments],
-        'Quotes': [quotes],
-        'Views': [views],
-        'Followers': [followers],
-        'Followings': [followings],
-        'Verified': [1 if verified_status else 0],
+        'Clickbait Score': [Clickbait Score],
+        'Hyperbole Score': [Hyperbole Score],
+        'HC Sentiment Score': [HC Sentiment Score],
+        'HC Tweet Engagement Ratio': [HC Tweet Engagement Ratio],
+        'Followers Following Ratio to misinfo': [Followers Following Ratio to misinfo],
+        'VA Freshness Score': [VA Freshness Score],
+        #'Followings': [followings],
+        #'Verified': [1 if verified_status else 0],
         # Add other features as needed
     })
 
