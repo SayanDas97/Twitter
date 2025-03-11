@@ -154,7 +154,7 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     # FFR to Misinfo
     U_Shaped_FFR = (
-        round(1 - math.exp(-0.8 * abs(math.log(followers / followings)), 4)
+        round(1 - math.exp(-0.8 * abs(math.log(followers / followings))), 4)
         if (followers > 0 and followings > 0)
         else 1
     )
