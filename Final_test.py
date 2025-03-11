@@ -68,7 +68,7 @@ def sentiment_vader(text):
         return "negative"
     else:
         return "neutral"
-"""
+        
 # Function to process a single tweet
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Create a dictionary to store the results
@@ -192,7 +192,7 @@ with st.form("twitter_form"):
     submitted = st.form_submit_button("Submit")
 
     # Process the input and display the results
-    if submitted:
+if submitted:
         # Process the tweet
         result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
@@ -205,9 +205,10 @@ with st.form("twitter_form"):
             'U_Shaped_FFR': [U_Shaped_FFR],
             'VA_Freshness_Score': [VA_Freshness_Score]
         })
-"""
+
 with open('svm_model.pkl', 'rb') as file:
             svm_model = pickle.load(file)
+"""
 data = {
     "Clickbait_Score": [0.3],
     "Hyperbole_Score": [0.8], 
@@ -219,6 +220,7 @@ data = {
 df_data = pd.DataFrame(data)
         # Make prediction using the SVM model
 #svm_model = load_model()
+"""
 prediction = svm_model.predict(df_data)
 st.write(prediction)
 """
