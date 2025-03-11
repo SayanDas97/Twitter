@@ -1,8 +1,8 @@
 streamlit
 pandas
 nltk
-scikit-learn
+scikit-learn==1.5.0
 numpy
 imbalanced-learn
-pickle
+pickleshare==0.7.5
 math
