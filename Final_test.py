@@ -209,9 +209,10 @@ with st.form("twitter_form"):
 with open('svm_model.pkl', 'rb') as file:
             svm_model = pickle.load(file)
 data = {0.3, 0.8, 0.6, 0.9, 0.3, 0.8}
+df_data = df.DataFrame(data)
         # Make prediction using the SVM model
 #svm_model = load_model()
-prediction = svm_model.predict(data)
+prediction = svm_model.predict(df_data)
 st.write(prediction)
 """
         # Map the prediction to the corresponding class label
