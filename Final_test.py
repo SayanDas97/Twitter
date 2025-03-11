@@ -235,7 +235,7 @@ if submitted:
 
     # Prepare the input for the SVM model
 # Prepare the input for the SVM model
-input_data = pd.DataFrame({
+    input_data = pd.DataFrame({
     'Clickbait Score': [result['Clickbait Score']],
     'Hyperbole Score': [result['Hyperbole Score']],
     'HC Sentiment Score': [result['HC Sentiment Score']],
