@@ -73,53 +73,53 @@ def sentiment_vader(text):
 # Function to process a single tweet
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Create a dictionary to store the results
-    result = {}
+    #result = {}
 
     # Count the number of words in the tweet
     word_count = len(str(tweet_body).split())
-    result['Word Count'] = word_count
+    #result['Word Count'] = word_count
 
     # Count sensational words in the tweet
     sensational_words = count_sensational_words(tweet_body)
-    result['Sensational words count'] = sensational_words
+    #result['Sensational words count'] = sensational_words
 
     # Count consecutive capital words in the tweet
     consecutive_capitals = sum(1 for word in str(tweet_body).split() if word.isupper() and len(word) > 2)
-    result['Consecutive Capitals'] = consecutive_capitals
+    #result['Consecutive Capitals'] = consecutive_capitals
 
     # Count exclamation marks in the tweet
     exclamation_count = str(tweet_body).count('!')
-    result['Exclamation mark count'] = exclamation_count
+    #result['Exclamation mark count'] = exclamation_count
 
     # Count question marks in the tweet
     question_count = str(tweet_body).count('?')
-    result['Question mark count'] = question_count
+    #result['Question mark count'] = question_count
 
     # Count consecutive dots in the tweet
     incomplete_sentence_count = str(tweet_body).count('..')
-    result['incomplete sentence indicator'] = incomplete_sentence_count
+    #result['incomplete sentence indicator'] = incomplete_sentence_count
 
     # Perform sentiment analysis
     simply_sentiment = vader.polarity_scores(tweet_body)['compound']
-    result['Sentiment Score'] = simply_sentiment
-    result['Sentiment Category'] = sentiment_vader(tweet_body)
+    #result['Sentiment Score'] = simply_sentiment
+    #result['Sentiment Category'] = sentiment_vader(tweet_body)
 
     # Count hashtags
     hashtag_count = count_hashtags(tweet_body)
-    result['Hashtags used'] = hashtag_count
+    #result['Hashtags used'] = hashtag_count
 
     # Count emojis
     emoji_count = count_emojis(tweet_body)
-    result['Number of emoticons'] = emoji_count
+    #result['Number of emoticons'] = emoji_count
 
     # Calculate Account Age
     joining_date = pd.to_datetime(joining_date)
     age_in_days = (datetime.now() - joining_date).days
-    result['Account Age'] = age_in_days
+    #result['Account Age'] = age_in_days
 
     # Count the number of @ symbols (mentions)
     mention_count = str(tweet_body).count('@')
-    result['mention count'] = mention_count
+    #result['mention count'] = mention_count
 
     # Clickbait Score
     clickbait_usage = (
@@ -127,31 +127,31 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
         incomplete_sentence_count + emoji_count + hashtag_count
     ) 
     Clickbait_Score = round (clickbait_usage / ( 1 + clickbait_usage),4)
-    result['Clickbait Score'] = Clickbait_Score
+    #result['Clickbait Score'] = Clickbait_Score
 
     #Hyperbole Score
     Hyperbole_Score = round (sensational_words / ( 1 + sensational_words),4 )
-    result['Hyperbole Score'] = Hyperbole_Score
+    #result['Hyperbole Score'] = Hyperbole_Score
 
     #hc_sentiment
     HC_Sentiment = round (abs(simply_sentiment) * ((clickbait_score_actual + hyperbole_score) / 2), 4)
-    result['HC Sentiment Score'] = HC_Sentiment
+    #result['HC Sentiment Score'] = HC_Sentiment
 
     #Engagement Ratio
     engagement_ratio =  (
         likes + retweets + comments + quotes
     ) / views if views > 0 else 0
-    result['Engagement Ratio'] = engagement_ratio
+    #result['Engagement Ratio'] = engagement_ratio
 
     #hc_tweet_engagement_ratio
     HC_TER = round (engagement_ratio * (clickbait_score_actual + hyperbole_score) / 2,4)
-    result['HC Tweet Engagement Ratio'] = HC_TER
+    #result['HC Tweet Engagement Ratio'] = HC_TER
 
     #Follower following ratio
     follower_following_ratio = (
         followers
     ) / followings if followings > 0 else 0
-    result['Follower Following Ratio'] = follower_following_ratio
+    #result['Follower Following Ratio'] = follower_following_ratio
 
     #FFR to Misinfo
     U_Shaped_FFR = (
@@ -159,12 +159,12 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     if (followers > 0 and followings > 0) 
     else 1
     )
-    result['Follower Following Ratio to misinfo'] = U_Shaped_FFR
+    #result['Follower Following Ratio to misinfo'] = U_Shaped_FFR
 
     #VA freshness score
     account_age_to_misinfo = round(math.exp(-0.01 * age_in_days), 4)
     VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
-    result['VA freshness score'] = VA_Freshness_Score
+    #result['VA freshness score'] = VA_Freshness_Score
 
     return result
 
@@ -203,7 +203,7 @@ with st.form("twitter_form"):
     submitted = st.form_submit_button("Submit")
 
     # Process the input and display the results
-    #if submitted:
+    if submitted:
     # Process the tweet
     #result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
@@ -236,12 +236,12 @@ with st.form("twitter_form"):
     # Prepare the input for the SVM model
 # Prepare the input for the SVM model
     input_data = pd.DataFrame({
-    'Clickbait_Score': [result['Clickbait_Score']],
-    'Hyperbole_Score': [result['Hyperbole_Score']],
-    'HC_Sentiment': [result['HC_Sentiment']],
-    'HC_TER': [result['HC_TER']],
-    'U_Shaped_FFR': [result['U_Shaped_FFR']],
-    'VA_Freshness_Score': [result['VA_Freshness_Score']],
+    'Clickbait_Score':  Clickbait_Score,
+    'Hyperbole_Score': Hyperbole_Score,
+    'HC_Sentiment': HC_Sentiment,
+    'HC_TER': HC_TER,
+    'U_Shaped_FFR': U_Shaped_FFR,
+    'VA_Freshness_Score': VA_Freshness_Score,
     # Add other features as needed
 })
         #'Followings': [followings],
