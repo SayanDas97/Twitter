@@ -167,12 +167,6 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     return result
 
-# Load the SVM model
-def load_model():
-    with open('svm_model.pkl', 'rb') as file:
-        svm_model = pickle.load(file)
-return svm_model
-
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
 
@@ -195,16 +189,10 @@ with st.form("twitter_form"):
 if submitted:
         # Process the tweet
         result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
-
-        # Prepare the input for the SVM model
-        input_data = pd.DataFrame({
-            'Clickbait_Score': [Clickbait_Score],
-            'Hyperbole_Score': [Hyperbole_Score],
-            'HC_Sentiment': [HC_Sentiment],
-            'HC_TER': [HC_TER],
-            'U_Shaped_FFR': [U_Shaped_FFR],
-            'VA_Freshness_Score': [VA_Freshness_Score]
-        })
+# Load the SVM model
+def load_model():
+    with open('svm_model.pkl', 'rb') as file:
+        svm_model = pickle.load(file)
 
 with open('svm_model.pkl', 'rb') as file:
             svm_model = pickle.load(file)
@@ -221,6 +209,15 @@ df_data = pd.DataFrame(data)
         # Make prediction using the SVM model
 #svm_model = load_model()
 """
+# Prepare the input for the SVM model
+        input_data = pd.DataFrame({
+            'Clickbait_Score': [Clickbait_Score],
+            'Hyperbole_Score': [Hyperbole_Score],
+            'HC_Sentiment': [HC_Sentiment],
+            'HC_TER': [HC_TER],
+            'U_Shaped_FFR': [U_Shaped_FFR],
+            'VA_Freshness_Score': [VA_Freshness_Score]
+        })
 prediction = svm_model.predict(df_data)
 st.write(prediction)
 """
@@ -232,3 +229,4 @@ st.write(prediction)
         st.subheader("Misinformation Prediction")
        # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
 """
+return svm_model
