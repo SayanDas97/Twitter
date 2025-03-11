@@ -1,8 +1,2 @@
-streamlit
-pandas
-nltk
 scikit-learn==1.5.0
-numpy
-imbalanced-learn
 pickleshare==0.7.5
-math
