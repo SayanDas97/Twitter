@@ -76,49 +76,40 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     # Count the number of words in the tweet
     word_count = len(str(tweet_body).split())
-    result['Word Count'] = word_count
 
     # Count sensational words in the tweet
     sensational_words = count_sensational_words(tweet_body)
-    result['Sensational words count'] = sensational_words
 
     # Count consecutive capital words in the tweet
     consecutive_capitals = sum(1 for word in str(tweet_body).split() if word.isupper() and len(word) > 2)
-    result['Consecutive Capitals'] = consecutive_capitals
 
     # Count exclamation marks in the tweet
     exclamation_count = str(tweet_body).count('!')
-    result['Exclamation mark count'] = exclamation_count
 
     # Count question marks in the tweet
     question_count = str(tweet_body).count('?')
-    result['Question mark count'] = question_count
 
     # Count consecutive dots in the tweet
     incomplete_sentence_count = str(tweet_body).count('..')
-    result['incomplete sentence indicator'] = incomplete_sentence_count
 
     # Perform sentiment analysis
     simply_sentiment = vader.polarity_scores(tweet_body)['compound']
-    result['Sentiment Score'] = simply_sentiment
-    result['Sentiment Category'] = sentiment_vader(tweet_body)
+    Sentiment_Category = sentiment_vader(tweet_body)
 
     # Count hashtags
     hashtag_count = count_hashtags(tweet_body)
-    result['Hashtags used'] = hashtag_count
-
+    
     # Count emojis
     emoji_count = count_emojis(tweet_body)
-    result['Number of emoticons'] = emoji_count
-
+    
     # Calculate Account Age
     joining_date = pd.to_datetime(joining_date)
     age_in_days = (datetime.now() - joining_date).days
-    result['Account Age'] = age_in_days
+    
 
     # Count the number of @ symbols (mentions)
     mention_count = str(tweet_body).count('@')
-    result['mention count'] = mention_count
+    
 
     # Clickbait Score
     clickbait_usage = (
@@ -126,31 +117,25 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
         incomplete_sentence_count + emoji_count + hashtag_count
     ) 
     Clickbait_Score = round(clickbait_usage / (1 + clickbait_usage), 4)
-    result['Clickbait_Score'] = Clickbait_Score
 
     # Hyperbole Score
     Hyperbole_Score = round(sensational_words / (1 + sensational_words), 4)
-    result['Hyperbole_Score'] = Hyperbole_Score
-
+   
     # HC Sentiment
     HC_Sentiment = round(abs(simply_sentiment) * ((Clickbait_Score + Hyperbole_Score) / 2), 4)
-    result['HC_Sentiment'] = HC_Sentiment
 
     # Engagement Ratio
     engagement_ratio = (
         likes + retweets + comments + quotes
     ) / views if views > 0 else 0
-    result['Engagement Ratio'] = engagement_ratio
 
     # HC Tweet Engagement Ratio
     HC_TER = round(engagement_ratio * (Clickbait_Score + Hyperbole_Score) / 2, 4)
-    result['HC_TER'] = HC_TER
 
     # Follower following ratio
     follower_following_ratio = (
         followers
     ) / followings if followings > 0 else 0
-    result['Follower Following Ratio'] = follower_following_ratio
 
     # FFR to Misinfo
     U_Shaped_FFR = (
@@ -158,12 +143,9 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
         if (followers > 0 and followings > 0)
         else 1
     )
-    result['U_Shaped_FFR'] = U_Shaped_FFR
-
     # VA freshness score
     account_age_to_misinfo = round(math.exp(-0.01 * age_in_days), 4)
     VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
-    result['VA_Freshness_Score'] = VA_Freshness_Score
 
     return result
 
@@ -196,7 +178,7 @@ def load_model():
     return svm_model
 
 with open('svm_model.pkl', 'rb') as file:
-            svm_model = pickle.load(file)
+        svm_model = pickle.load(file)
     
 """
 data = {
@@ -222,13 +204,13 @@ input_data = pd.DataFrame({
 })
 prediction = svm_model.predict(df_data)
 st.write(prediction)
-"""
-        # Map the prediction to the corresponding class label
-        class_labels = ['Low', 'No', 'Moderate', 'High']
-        predicted_class = class_labels[prediction[0]]
 
-        # Display the prediction result with class levels
-        st.subheader("Misinformation Prediction")
-       # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
-"""
+    # Map the prediction to the corresponding class label
+     class_labels = ['Low', 'No', 'Moderate', 'High']
+     predicted_class = class_labels[prediction[0]]
+
+     # Display the prediction result with class levels
+     st.subheader("Misinformation Prediction")
+     # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+
 
