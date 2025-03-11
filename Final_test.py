@@ -68,7 +68,7 @@ def sentiment_vader(text):
         return "negative"
     else:
         return "neutral"
-
+"""
 # Function to process a single tweet
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Create a dictionary to store the results
@@ -166,13 +166,13 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     result['VA_Freshness_Score'] = VA_Freshness_Score
 
     return result
-
+"""
 # Load the SVM model
 def load_model():
     with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
     return svm_model
-
+"""
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
 
@@ -205,15 +205,19 @@ with st.form("twitter_form"):
             'U_Shaped_FFR': [U_Shaped_FFR],
             'VA_Freshness_Score': [VA_Freshness_Score]
         })
+"""
 
+        data = {0.3, 0.8, 0.6, 0.9, 0.3, 0.8}
         # Make prediction using the SVM model
         svm_model = load_model()
-        prediction = svm_model.predict(input_data)
-
+        prediction = svm_model.predict(data)
+        st.write(prediction)
+"""
         # Map the prediction to the corresponding class label
         class_labels = ['Low', 'No', 'Moderate', 'High']
         predicted_class = class_labels[prediction[0]]
 
         # Display the prediction result with class levels
         st.subheader("Misinformation Prediction")
-        st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+       # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+"""
