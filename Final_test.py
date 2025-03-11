@@ -234,17 +234,19 @@ if submitted:
     svm_model = load_model()
 
     # Prepare the input for the SVM model
-    input_data = pd.DataFrame({
-        'Clickbait Score': [Clickbait Score],
-        'Hyperbole Score': [Hyperbole Score],
-        'HC Sentiment Score': [HC Sentiment Score],
-        'HC Tweet Engagement Ratio': [HC Tweet Engagement Ratio],
-        'Followers Following Ratio to misinfo': [Followers Following Ratio to misinfo],
-        'VA Freshness Score': [VA Freshness Score],
+# Prepare the input for the SVM model
+input_data = pd.DataFrame({
+    'Clickbait Score': [result['Clickbait Score']],
+    'Hyperbole Score': [result['Hyperbole Score']],
+    'HC Sentiment Score': [result['HC Sentiment Score']],
+    'HC Tweet Engagement Ratio': [result['HC Tweet Engagement Ratio']],
+    'Followers Following Ratio to misinfo': [result['Follower Following Ratio to misinfo']],
+    'VA Freshness Score': [result['VA freshness score']],
+    # Add other features as needed
+})
         #'Followings': [followings],
         #'Verified': [1 if verified_status else 0],
         # Add other features as needed
-    })
 
     # Make prediction using the SVM model
     prediction = svm_model.predict(input_data)
