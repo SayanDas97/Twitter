@@ -196,6 +196,7 @@ def load_model():
 
 with open('svm_model.pkl', 'rb') as file:
             svm_model = pickle.load(file)
+return svm_model
 """
 data = {
     "Clickbait_Score": [0.3],
@@ -229,4 +230,4 @@ st.write(prediction)
         st.subheader("Misinformation Prediction")
        # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
 """
-return svm_model
+
