@@ -236,12 +236,12 @@ with st.form("twitter_form"):
     # Prepare the input for the SVM model
 # Prepare the input for the SVM model
     input_data = pd.DataFrame({
-    'Clickbait Score': [result['Clickbait_Score']],
-    'Hyperbole Score': [result['Hyperbole_Score']],
-    'HC Sentiment Score': [result['HC_Sentiment']],
-    'HC Tweet Engagement Ratio': [result['HC_TER']],
-    'Followers Following Ratio to misinfo': [result['U_Shaped_FFR']],
-    'VA Freshness Score': [result['VA_Freshness_Score']],
+    'Clickbait_Score': [result['Clickbait_Score']],
+    'Hyperbole_Score': [result['Hyperbole_Score']],
+    'HC_Sentiment': [result['HC_Sentiment']],
+    'HC_TER': [result['HC_TER']],
+    'U_Shaped_FFR': [result['U_Shaped_FFR']],
+    'VA_Freshness_Score': [result['VA_Freshness_Score']],
     # Add other features as needed
 })
         #'Followings': [followings],
