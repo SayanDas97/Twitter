@@ -166,13 +166,13 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     result['VA_Freshness_Score'] = VA_Freshness_Score
 
     return result
-"""
+
 # Load the SVM model
 def load_model():
     with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
 return svm_model
-"""
+
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
 
@@ -206,6 +206,8 @@ with st.form("twitter_form"):
             'VA_Freshness_Score': [VA_Freshness_Score]
         })
 """
+with open('svm_model.pkl', 'rb') as file:
+            svm_model = pickle.load(file)
 data = {0.3, 0.8, 0.6, 0.9, 0.3, 0.8}
         # Make prediction using the SVM model
 svm_model = load_model()
