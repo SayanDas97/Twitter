@@ -193,10 +193,11 @@ if submitted:
 def load_model():
     with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
+return svm_model
 
 with open('svm_model.pkl', 'rb') as file:
             svm_model = pickle.load(file)
-return svm_model
+    
 """
 data = {
     "Clickbait_Score": [0.3],
