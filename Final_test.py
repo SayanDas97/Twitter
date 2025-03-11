@@ -240,7 +240,7 @@ with st.form("twitter_form"):
     'Hyperbole Score': [result['Hyperbole_Score']],
     'HC Sentiment Score': [result['HC_Sentiment']],
     'HC Tweet Engagement Ratio': [result['HC_TER']],
-    'Followers Following Ratio to misinfo': [result['U_Shaped_FFR]],
+    'Followers Following Ratio to misinfo': [result['U_Shaped_FFR']],
     'VA Freshness Score': [result['VA_Freshness_Score']],
     # Add other features as needed
 })
