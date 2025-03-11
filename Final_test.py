@@ -6,7 +6,6 @@ import math
 from datetime import datetime
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pickle
-from sklearn.preprocessing import StandardScaler
 
 # Download the VADER lexicon (one-time only)
 nltk.download('vader_lexicon')
@@ -155,7 +154,7 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
 
     # FFR to Misinfo
     U_Shaped_FFR = (
-        round(1 - math.exp(-0.8 * abs(math.log(followers / followings)), 4))
+        round(1 - math.exp(-0.8 * abs(math.log(followers / followings)), 4)
         if (followers > 0 and followings > 0)
         else 1
     )
@@ -179,81 +178,42 @@ st.title("Twitter Misinformation Detection")
 
 # Create a form for user input
 with st.form("twitter_form"):
-    # Text input for Tweet Body
+    # Input fields
     tweet_body = st.text_area("Tweet Body", placeholder="Enter the tweet text here...")
-
-    # Numeric inputs for engagement metrics
     likes = st.number_input("Likes", min_value=0, value=0)
     retweets = st.number_input("Retweets", min_value=0, value=0)
     comments = st.number_input("Comments", min_value=0, value=0)
     quotes = st.number_input("Quotes", min_value=0, value=0)
     views = st.number_input("Views", min_value=0, value=0)
-
-    # Numeric inputs for follower/following counts
     followers = st.number_input("Number of Followers", min_value=0, value=0)
     followings = st.number_input("Number of Followings", min_value=0, value=0)
-
-    # Date input for Date of Joining
     joining_date = st.date_input("Date of Joining")
-
-    # Checkbox for Account Verification Status
     verified_status = st.checkbox("Account Verified?")
-
-    # Submit button
     submitted = st.form_submit_button("Submit")
 
     # Process the input and display the results
     if submitted:
-    # Process the tweet
-    result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
+        # Process the tweet
+        result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
-    # Display the results
-    #st.subheader("Tweet Analysis Results")
-    #st.write(f"**Word Count:** {result['Word Count']}")
-    #st.write(f"**Sensational words count:** {result['Sensational words count']}")
-    #st.write(f"**Consecutive Capitals:** {result['Consecutive Capitals']}")
-    #st.write(f"**Exclamation mark count:** {result['Exclamation mark count']}")
-    #st.write(f"**Question mark count:** {result['Question mark count']}")
-    #st.write(f"**Incomplete sentence indicator:** {result['incomplete sentence indicator']}")
-    #st.write(f"**Sentiment Score:** {result['Sentiment Score']}")
-    #st.write(f"**Sentiment Category:** {result['Sentiment Category']}")
-    #st.write(f"**Hashtags used:** {result['Hashtags used']}")
-    #st.write(f"**Number of emoticons:** {result['Number of emoticons']}")
-    #st.write(f"**Account Age:** {result['Account Age']}")
-    #st.write(f"**Mention count:** {result['mention count']}")
-    #st.write(f"**Clickbait Score:** {result['Clickbait Score']:.4f}")
-    #st.write(f"**Hyperbole Score:** {result['Hyperbole Score']:.4f}")
-    #st.write(f"**HC Sentiment Score:** {result['HC Sentiment Score']:.4f}")
-    #st.write(f"**HC Tweet Engagement Ratio:** {result['HC Tweet Engagement Ratio']:.4f}")
-    #st.write(f"**Engagement Ratio:** {result['Engagement Ratio']:.4f}")
-    #st.write(f"**Followers Following Ratio:** {result['Follower Following Ratio']:.4f}")
-    #st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
-    #st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}") """
+        # Prepare the input for the SVM model
+        input_data = pd.DataFrame({
+            'Clickbait_Score': [result['Clickbait_Score']],
+            'Hyperbole_Score': [result['Hyperbole_Score']],
+            'HC_Sentiment': [result['HC_Sentiment']],
+            'HC_TER': [result['HC_TER']],
+            'U_Shaped_FFR': [result['U_Shaped_FFR']],
+            'VA_Freshness_Score': [result['VA_Freshness_Score']],
+        })
 
-    # Load the SVM model
-    svm_model = load_model()
+        # Make prediction using the SVM model
+        svm_model = load_model()
+        prediction = svm_model.predict(input_data)
 
-    # Prepare the input for the SVM model
-# Prepare the input for the SVM model
-    input_data = pd.DataFrame({
-    'Clickbait_Score': [result['Clickbait_Score']],
-    'Hyperbole_Score': [result['Hyperbole_Score']],
-    'HC_Sentiment': [result['HC_Sentiment']],
-    'HC_TER': [result['HC_TER']],
-    'U_Shaped_FFR': [result['U_Shaped_FFR']],
-    'VA_Freshness_Score': [result['VA_Freshness_Score']],
-})
-        #'Followings': [followings],
-        #'Verified': [1 if verified_status else 0],
-        # Add other features as needed
+        # Map the prediction to the corresponding class label
+        class_labels = ['Low', 'No', 'Moderate', 'High']
+        predicted_class = class_labels[prediction[0]]
 
-    # Make prediction using the SVM model
-    prediction = svm_model.predict(input_data)
-
-    # Map the prediction to the corresponding class label
-    class_labels = ['Low', 'No', 'Moderate', 'High']
-    predicted_class = class_labels[prediction[0]]
-
-    # Display the prediction result with class levels
-    st.subheader("Misinformation Prediction")
-    st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+        # Display the prediction result with class levels
+        st.subheader("Misinformation Prediction")
+        st.write(f"**Predicted Misinformation Level:** {predicted_class}")
