@@ -126,16 +126,16 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
         exclamation_count + question_count + consecutive_capitals +
         incomplete_sentence_count + emoji_count + hashtag_count
     ) 
-    clickbait_score_actual = round (clickbait_usage / ( 1 + clickbait_usage),4)
-    result['Clickbait Score'] = clickbait_score_actual
+    Clickbait_Score = round (clickbait_usage / ( 1 + clickbait_usage),4)
+    result['Clickbait Score'] = Clickbait_Score
 
     #Hyperbole Score
-    hyperbole_score = round (sensational_words / ( 1 + sensational_words),4 )
-    result['Hyperbole Score'] = hyperbole_score
+    Hyperbole_Score = round (sensational_words / ( 1 + sensational_words),4 )
+    result['Hyperbole Score'] = Hyperbole_Score
 
     #hc_sentiment
-    hc_sentiment = round (abs(simply_sentiment) * ((clickbait_score_actual + hyperbole_score) / 2), 4)
-    result['HC Sentiment Score'] = hc_sentiment
+    HC_Sentiment = round (abs(simply_sentiment) * ((clickbait_score_actual + hyperbole_score) / 2), 4)
+    result['HC Sentiment Score'] = HC_Sentiment
 
     #Engagement Ratio
     engagement_ratio =  (
@@ -144,8 +144,8 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     result['Engagement Ratio'] = engagement_ratio
 
     #hc_tweet_engagement_ratio
-    hc_ter = round (engagement_ratio * (clickbait_score_actual + hyperbole_score) / 2,4)
-    result['HC Tweet Engagement Ratio'] = hc_ter
+    HC_TER = round (engagement_ratio * (clickbait_score_actual + hyperbole_score) / 2,4)
+    result['HC Tweet Engagement Ratio'] = HC_TER
 
     #Follower following ratio
     follower_following_ratio = (
@@ -154,17 +154,17 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     result['Follower Following Ratio'] = follower_following_ratio
 
     #FFR to Misinfo
-    ffr_to_misinfo = (
+    U_Shaped_FFR = (
     round(1 - math.exp(-0.8 * abs(math.log(followers / followings))), 4) 
     if (followers > 0 and followings > 0) 
     else 1
     )
-    result['Follower Following Ratio to misinfo'] = ffr_to_misinfo
+    result['Follower Following Ratio to misinfo'] = U_Shaped_FFR
 
     #VA freshness score
     account_age_to_misinfo = round(math.exp(-0.01 * age_in_days), 4)
-    va_freshness_score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
-    result['VA freshness score'] = va_freshness_score
+    VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
+    result['VA freshness score'] = VA_Freshness_Score
 
     return result
 
@@ -202,7 +202,7 @@ with st.form("twitter_form"):
     # Submit button
     submitted = st.form_submit_button("Submit")
 
-# Process the input and display the results
+"""# Process the input and display the results
 if submitted:
     # Process the tweet
     result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
@@ -228,7 +228,7 @@ if submitted:
     st.write(f"**Engagement Ratio:** {result['Engagement Ratio']:.4f}")
     st.write(f"**Followers Following Ratio:** {result['Follower Following Ratio']:.4f}")
     st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
-    st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}")
+    st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}") """
 
     # Load the SVM model
     svm_model = load_model()
