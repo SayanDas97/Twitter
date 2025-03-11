@@ -195,12 +195,12 @@ df_data = pd.DataFrame(data)
 """
 # Prepare the input for the SVM model
 input_data = pd.DataFrame({
-    'Clickbait_Score' : Clickbait_Score,
-    'Hyperbole_Score': Hyperbole_Score,
-    'HC_Sentiment': HC_Sentiment,
-    'HC_TER': HC_TER,
-    'U_Shaped_FFR': U_Shaped_FFR,
-    'VA_Freshness_Score': VA_Freshness_Score
+    "Clickbait_Score" : Clickbait_Score,
+    "Hyperbole_Score": Hyperbole_Score,
+    "HC_Sentiment": HC_Sentiment,
+    "HC_TER": HC_TER,
+    "U_Shaped_FFR": U_Shaped_FFR,
+    "VA_Freshness_Score": VA_Freshness_Score
 })
 prediction = svm_model.predict(df_data)
 st.write(prediction)
