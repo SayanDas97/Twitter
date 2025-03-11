@@ -202,33 +202,33 @@ with st.form("twitter_form"):
     # Submit button
     submitted = st.form_submit_button("Submit")
 
-"""# Process the input and display the results
-if submitted:
+    # Process the input and display the results
+    #if submitted:
     # Process the tweet
-    result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
+    #result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 
     # Display the results
-    st.subheader("Tweet Analysis Results")
-    st.write(f"**Word Count:** {result['Word Count']}")
-    st.write(f"**Sensational words count:** {result['Sensational words count']}")
-    st.write(f"**Consecutive Capitals:** {result['Consecutive Capitals']}")
-    st.write(f"**Exclamation mark count:** {result['Exclamation mark count']}")
-    st.write(f"**Question mark count:** {result['Question mark count']}")
-    st.write(f"**Incomplete sentence indicator:** {result['incomplete sentence indicator']}")
-    st.write(f"**Sentiment Score:** {result['Sentiment Score']}")
-    st.write(f"**Sentiment Category:** {result['Sentiment Category']}")
-    st.write(f"**Hashtags used:** {result['Hashtags used']}")
-    st.write(f"**Number of emoticons:** {result['Number of emoticons']}")
-    st.write(f"**Account Age:** {result['Account Age']}")
-    st.write(f"**Mention count:** {result['mention count']}")
-    st.write(f"**Clickbait Score:** {result['Clickbait Score']:.4f}")
-    st.write(f"**Hyperbole Score:** {result['Hyperbole Score']:.4f}")
-    st.write(f"**HC Sentiment Score:** {result['HC Sentiment Score']:.4f}")
-    st.write(f"**HC Tweet Engagement Ratio:** {result['HC Tweet Engagement Ratio']:.4f}")
-    st.write(f"**Engagement Ratio:** {result['Engagement Ratio']:.4f}")
-    st.write(f"**Followers Following Ratio:** {result['Follower Following Ratio']:.4f}")
-    st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
-    st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}") """
+    #st.subheader("Tweet Analysis Results")
+    #st.write(f"**Word Count:** {result['Word Count']}")
+    #st.write(f"**Sensational words count:** {result['Sensational words count']}")
+    #st.write(f"**Consecutive Capitals:** {result['Consecutive Capitals']}")
+    #st.write(f"**Exclamation mark count:** {result['Exclamation mark count']}")
+    #st.write(f"**Question mark count:** {result['Question mark count']}")
+    #st.write(f"**Incomplete sentence indicator:** {result['incomplete sentence indicator']}")
+    #st.write(f"**Sentiment Score:** {result['Sentiment Score']}")
+    #st.write(f"**Sentiment Category:** {result['Sentiment Category']}")
+    #st.write(f"**Hashtags used:** {result['Hashtags used']}")
+    #st.write(f"**Number of emoticons:** {result['Number of emoticons']}")
+    #st.write(f"**Account Age:** {result['Account Age']}")
+    #st.write(f"**Mention count:** {result['mention count']}")
+    #st.write(f"**Clickbait Score:** {result['Clickbait Score']:.4f}")
+    #st.write(f"**Hyperbole Score:** {result['Hyperbole Score']:.4f}")
+    #st.write(f"**HC Sentiment Score:** {result['HC Sentiment Score']:.4f}")
+    #st.write(f"**HC Tweet Engagement Ratio:** {result['HC Tweet Engagement Ratio']:.4f}")
+    #st.write(f"**Engagement Ratio:** {result['Engagement Ratio']:.4f}")
+    #st.write(f"**Followers Following Ratio:** {result['Follower Following Ratio']:.4f}")
+    #st.write(f"**Followers Following Ratio to misinfo:** {result['Follower Following Ratio to misinfo']:.4f}")
+    #st.write(f"**VA Freshness Score:** {result['VA freshness score']:.4f}") """
 
     # Load the SVM model
     svm_model = load_model()
