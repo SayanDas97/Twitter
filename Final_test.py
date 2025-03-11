@@ -205,12 +205,12 @@ input_data = pd.DataFrame({
 prediction = svm_model.predict(df_data)
 st.write(prediction)
 
-    # Map the prediction to the corresponding class label
-         class_labels = ['Low', 'No', 'Moderate', 'High']
-         predicted_class = class_labels[prediction[0]]
+# Map the prediction to the corresponding class label
+class_labels = ['Low', 'No', 'Moderate', 'High']
+predicted_class = class_labels[prediction[0]]
 
-     # Display the prediction result with class levels
-         st.subheader("Misinformation Prediction")
-     # st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+# Display the prediction result with class levels
+st.subheader("Misinformation Prediction")
+# st.write(f"**Predicted Misinformation Level:** {predicted_class}")
 
 
