@@ -86,17 +86,22 @@ with open('svm_model.pkl', 'rb') as file:
 # Process the input and display the results
 if submitted:
     new_data = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
-    st.write("Processed Data Shape:", new_data.shape)  # Debugging: Check the shape
-    prediction = svm_model.predict(new_data)
     
-    # Display prediction with custom styling
-    st.markdown(
-        f"""
-        <div style='background-color: #e8f5e9; padding: 15px; border-radius: 10px; text-align: center;'>
-            <h3 style='color: #2e7d32; font-family: Arial, sans-serif;'>
-                Predicted Misinformation Level: {prediction[0]}
-            </h3>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    if new_data is not None:
+        st.write("Processed Data:", new_data)  # Debugging: Check the processed data
+        st.write("Processed Data Shape:", new_data.shape)  # Debugging: Check the shape
+        prediction = svm_model.predict(new_data)
+        
+        # Display prediction with custom styling
+        st.markdown(
+            f"""
+            <div style='background-color: #e8f5e9; padding: 15px; border-radius: 10px; text-align: center;'>
+                <h3 style='color: #2e7d32; font-family: Arial, sans-serif;'>
+                    Predicted Misinformation Level: {prediction[0]}
+                </h3>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    else:
+        st.error("Error: Processed data is None. Check the process_tweet function.")
