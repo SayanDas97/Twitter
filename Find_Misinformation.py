@@ -155,7 +155,7 @@ st.markdown("""
 
 
 
-st.title("🛑Hari da dukan khulbe na Detection in a tweet")
+st.title("🛑Misinformation Detection in a tweet")
 st.subheader("Analyze tweets for potential misinformation indicators")
 
 # Create a form for user input
