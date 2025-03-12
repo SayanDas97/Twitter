@@ -93,14 +93,14 @@ st.markdown("""
     .stApp {
         background: linear-gradient(to right, #141E30, #243B55);
         color: white;
-        padding: 20px 20px 20px 20px;
+        padding: 20px;
         border-radius: 10px;
         text-align: center;
-        font-size: 50px;
+        font-size: 30px;
 
     /* Headers */
     h1, h2, h3 {
-        color: black;
+        color: white;
         font-weight: bold;
         font-size: 30px;
         text-align: center;
