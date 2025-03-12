@@ -14,7 +14,28 @@ nltk.download('vader_lexicon')
 vader = SentimentIntensityAnalyzer()
 
 # Define sensational keywords
-sensational_keywords = [...]  # Same list as before
+sensational_keywords = [
+    "Unprecedented", "Biggest", "Worst", "Best", "Regret later",
+    "Happening Now", "Before it too late", "Act now", "Wake up",
+    "Must read", "Cover Up", "OMG", "Shocking", "Warning", "Urgent",
+    "Breaking", "Exposed", "Unbelievable", "Disaster", "Deadly",
+    "Emergency", "Dangerous", "Dirty", "Betrayal", "Lies", "Rigged", "Hoax",
+    "Scam", "Fraud", "Corrupt", "Evil", "Agenda", "Experts say", "Scientists confirm",
+    "They admit", "Whistleblower reveals", "Leaked documents show", "Insider knowledge",
+    "You won’t believe", "They don’t want you to know", "Share before it’s deleted",
+    "This will change everything", "Spread the truth", "Hidden", "Terrifying",
+    "Catastrophe", "Collapse", "Outbreak", "Cover-up", "Secret", "Banned", "Suppressed",
+    "Silenced", "Shadow government", "Deep state", "New World Order", "encouraged", "Collapse imminent",
+    "On the verge of disaster", "Doomsday", "Endgame", "Final warning", "Tipping point", "The truth is out", "Mass panic", "Hidden crisis",
+    "Cover story", "Top-secret", "What they’re hiding",
+    "Little-known facts", "They don’t want you to see this", "Revealed at last", "It’s worse than you think", "History repeating itself",
+    "A must-watch", "Never seen before", "Think for yourself", "Judge for yourself", "Doctors confirm", "Military insider leaks",
+    "Respected sources say", "Government insider speaks out", "Hidden in plain sight", "Uncensored truth", "Exclusive access",
+    "Classified documents reveal", "Shocking footage", "Verified proof", "They knew all along", "Not a coincidence", "Think twice",
+    "Planned all along", "Silent war", "Hidden messages", "They control everything", "You’re being watched", "False flag", "Engineered crisis", "Time is running out",
+    "Do this now", "You must act", "They will regret this", "The world is waking up", "Stand up before it’s too late", "Fight back",
+    "Don't be fooled", "The moment of truth", "Expose the lies"
+]  # Same list as before
 
 # Function to count sensational words in a tweet
 def count_sensational_words(text):
