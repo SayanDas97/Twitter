@@ -100,7 +100,7 @@ st.markdown("""
 
     /* Headers */
     h1, h2, h3 {
-        color: black;
+        color: white;
         font-weight: bold;
         text-align: center;
     }
