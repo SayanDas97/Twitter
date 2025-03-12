@@ -105,3 +105,90 @@ if submitted:
         )
     else:
         st.error("Error: Processed data is None. Check the process_tweet function.")
+
+def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
+    try:
+        # Count the number of words in the tweet
+        word_count = len(str(tweet_body).split())
+
+        # Count sensational words in the tweet
+        sensational_words = count_sensational_words(tweet_body)
+
+        # Count consecutive capital words in the tweet
+        consecutive_capitals = sum(1 for word in str(tweet_body).split() if word.isupper() and len(word) > 2)
+
+        # Count exclamation marks in the tweet
+        exclamation_count = str(tweet_body).count('!')
+
+        # Count question marks in the tweet
+        question_count = str(tweet_body).count('?')
+
+        # Count consecutive dots in the tweet
+        incomplete_sentence_count = str(tweet_body).count('..')
+
+        # Perform sentiment analysis
+        simply_sentiment = vader.polarity_scores(tweet_body)['compound']
+        Sentiment_Category = sentiment_vader(tweet_body)
+
+        # Count hashtags
+        hashtag_count = count_hashtags(tweet_body)
+        
+        # Count emojis
+        emoji_count = count_emojis(tweet_body)
+        
+        # Calculate Account Age
+        joining_date = pd.to_datetime(joining_date)
+        age_in_days = (datetime.now() - joining_date).days
+        
+        # Count the number of @ symbols (mentions)
+        mention_count = str(tweet_body).count('@')
+        
+        # Clickbait Score
+        clickbait_usage = (
+            exclamation_count + question_count + consecutive_capitals +
+            incomplete_sentence_count + emoji_count + hashtag_count
+        ) 
+        Clickbait_Score = round(clickbait_usage / (1 + clickbait_usage), 4) if clickbait_usage > 0 else 0
+
+        # Hyperbole Score
+        Hyperbole_Score = round(sensational_words / (1 + sensational_words), 4) if sensational_words > 0 else 0
+       
+        # HC Sentiment
+        HC_Sentiment = round(abs(simply_sentiment) * ((Clickbait_Score + Hyperbole_Score) / 2), 4)
+
+        # Engagement Ratio
+        engagement_ratio = (
+            likes + retweets + comments + quotes
+        ) / views if views > 0 else 0
+
+        # HC Tweet Engagement Ratio
+        HC_TER = round(engagement_ratio * (Clickbait_Score + Hyperbole_Score) / 2, 4)
+
+        # Follower following ratio
+        follower_following_ratio = (
+            followers
+        ) / followings if followings > 0 else 0
+
+        # FFR to Misinfo
+        U_Shaped_FFR = (
+            round(1 - math.exp(-0.8 * abs(math.log(followers / followings))), 4)
+            if (followers > 0 and followings > 0)
+            else 1
+        )
+        # VA freshness score
+        account_age_to_misinfo = round(math.exp(-0.01 * age_in_days), 4)
+        VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
+
+        # Prepare the input for the SVM model
+        input_data = pd.DataFrame({
+            'Clickbait_Score': [Clickbait_Score],
+            'Hyperbole_Score': [Hyperbole_Score],
+            'HC_Sentiment': [HC_Sentiment],
+            'HC_TER': [HC_TER],
+            'U_Shaped_FFR': [U_Shaped_FFR],
+            'VA_Freshness_Score': [VA_Freshness_Score],
+        })        
+        return input_data
+    except Exception as e:
+        st.error(f"Error in process_tweet: {e}")
+        return None
