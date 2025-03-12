@@ -85,7 +85,7 @@ st.markdown("""
      <style>
     /* Background Styling */
     body {
-        background-color: light gray;
+        background-color: #D3D3D3;
         font-family: Arial, sans-serif;
     }
 
