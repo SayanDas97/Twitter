@@ -152,6 +152,24 @@ st.markdown("""
     """,
     unsafe_allow_html=True
 )
+with st.form("twitter_form"):
+    st.markdown("<h3 style='font-size:20px; font-weight:bold; color:black;'>Tweet Body</h3>", unsafe_allow_html=True)
+    tweet_body = st.text_area("", placeholder="Enter the tweet text here...")
+
+    st.markdown("<h3 style='font-size:20px; font-weight:bold; color:black;'>Likes</h3>", unsafe_allow_html=True)
+    likes = st.number_input("", min_value=0, value=0, format="%d", key="likes")
+
+    st.markdown("<h3 style='font-size:20px; font-weight:bold; color:black;'>Retweets</h3>", unsafe_allow_html=True)
+    retweets = st.number_input("", min_value=0, value=0, format="%d", key="retweets")
+
+    st.markdown("<h3 style='font-size:20px; font-weight:bold; color:black;'>Comments</h3>", unsafe_allow_html=True)
+    comments = st.number_input("", min_value=0, value=0, format="%d", key="comments")
+
+    st.markdown("<h3 style='font-size:20px; font-weight:bold; color:black;'>Quotes</h3>", unsafe_allow_html=True)
+    quotes = st.number_input("", min_value=0, value=0, format="%d", key="quotes")
+
+    submitted = st.form_submit_button("Submit")
+
 
 st.title("🛑Misinformation Detection in a tweet")
 st.subheader("Analyze tweets for potential misinformation indicators")
