@@ -139,7 +139,7 @@ st.markdown("""
         box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         text-align: center;
         font-weight: bold;
-        color: black;
+        color: red;
     }
      label {
         font-size:30px !important;
@@ -153,7 +153,7 @@ st.markdown("""
 
 
 
-st.title("🛑Misinformation Detection in a tweet")
+st.title("🛑Misinformation Detection in a Tweet")
 st.subheader("Analyze tweets for potential misinformation indicators")
 
 # Create a form for user input
