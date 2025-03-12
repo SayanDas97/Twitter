@@ -189,8 +189,8 @@ data = {
     "U_Shaped_FFR": [0.3],
     "VA_Freshness_Score": [0.8]
 }
-df_data = pd.DataFrame(data)
 """
+df_data = pd.DataFrame(data)
         # Make prediction using the SVM model
 svm_model = load_model()
 
