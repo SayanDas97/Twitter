@@ -28,7 +28,7 @@ st.markdown(
     """
     <style>
     .stForm {
-        background-color: #f4f4f4;
+        background-color: cyan;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
