@@ -72,7 +72,7 @@ def sentiment_vader(text):
 # Function to process a single tweet
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Create a dictionary to store the results
-    result = {}
+    input_data = {}
 
     # Count the number of words in the tweet
     word_count = len(str(tweet_body).split())
@@ -110,7 +110,6 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     # Count the number of @ symbols (mentions)
     mention_count = str(tweet_body).count('@')
     
-
     # Clickbait Score
     clickbait_usage = (
         exclamation_count + question_count + consecutive_capitals +
@@ -147,7 +146,17 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     account_age_to_misinfo = round(math.exp(-0.01 * age_in_days), 4)
     VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
 
-    return result
+    # Prepare the input for the SVM model
+input_data = pd.DataFrame({
+    'Clickbait_Score' : [Clickbait_Score],
+    'Hyperbole_Score' : [Hyperbole_Score],
+    'HC_Sentiment' : [HC_Sentiment],
+    'HC_TER' : [HC_TER],
+    'U_Shaped_FFR' : [U_Shaped_FFR],
+    'VA_Freshness_Score' : [VA_Freshness_Score],
+})
+
+    return input_data
 
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
@@ -184,15 +193,6 @@ with open('svm_model.pkl', 'rb') as file:
         # Make prediction using the SVM model
 svm_model = load_model()
 
-# Prepare the input for the SVM model
-input_data = pd.DataFrame({
-    'Clickbait_Score' : [Clickbait_Score],
-    'Hyperbole_Score' : [Hyperbole_Score],
-    'HC_Sentiment' : [HC_Sentiment],
-    'HC_TER' : [HC_TER],
-    'U_Shaped_FFR' : [U_Shaped_FFR],
-    'VA_Freshness_Score' : [VA_Freshness_Score],
-})
 prediction = svm_model.predict(input_data)
 st.write(prediction)
 
