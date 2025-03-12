@@ -23,8 +23,7 @@ def count_emojis(text): [...]
 def sentiment_vader(text): [...]
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Some processing logic
-    processed_tweet = some_processing_logic(tweet)
-
+    processed_tweet = process_tweet();
     if processed_tweet is None:
         print("Warning: Tweet processing failed!")
     return processed_tweet
