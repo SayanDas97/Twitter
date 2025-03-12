@@ -143,6 +143,11 @@ st.markdown("""
         font-weight: bold;
         color: black;
     }
+     label {
+        font-size: 18px !important;
+        font-weight: bold !important;
+        color: black !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
