@@ -150,7 +150,7 @@ st.subheader("Analyze tweets for potential misinformation indicators")
 
 # Create a form for user input
 with st.form("twitter_form"):
-   tweet_body = st.text_area("📝 Tweet Body", placeholder="Enter the tweet text here...")
+    tweet_body = st.text_area("📝 Tweet Body", placeholder="Enter the tweet text here...")
     likes = st.number_input("❤️ Likes", min_value=0, value=0)
     retweets = st.number_input("🔁 Retweets", min_value=0, value=0)
     comments = st.number_input("💬 Comments", min_value=0, value=0)
