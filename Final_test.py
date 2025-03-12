@@ -156,7 +156,7 @@ input_data = pd.DataFrame({
     'VA_Freshness_Score' : [VA_Freshness_Score],
 })
 
-    return input_data
+ return input_data
 
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
