@@ -159,7 +159,7 @@ with st.form("twitter_form"):
     followers = st.number_input("👥 Number of Followers", min_value=0, value=0)
     followings = st.number_input("👤 Number of Followings", min_value=0, value=0)
     joining_date = st.date_input("📅 Date of Joining")
-    verified_status = st.checkbox("✅ Account Verified?")
+    verified_status = st.checkbox("Account Verified?")
     submitted = st.form_submit_button("🚀 Submit")
 
 if submitted:
