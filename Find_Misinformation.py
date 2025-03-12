@@ -85,7 +85,7 @@ st.markdown("""
      <style>
     /* Background Styling */
     body {
-        background-color: #f4f4f4;
+        background-color: light gray;
         font-family: Arial, sans-serif;
     }
 
@@ -145,7 +145,7 @@ st.markdown("""
     unsafe_allow_html=True
 )
 
-st.title("🛑 Twitter Misinformation Detection")
+st.title("🛑Misinformation Detection in a tweet")
 st.subheader("Analyze tweets for potential misinformation indicators")
 
 # Create a form for user input
