@@ -81,7 +81,7 @@ with open('svm_model.pkl', 'rb') as file:
     svm_model = pickle.load(file)
 
 # Streamlit UI with custom CSS
-st.markdown(
+st.markdown("""
      <style>
     /* Background Styling */
     body {
@@ -148,7 +148,7 @@ st.markdown(
         font-weight:bold !important;
         color:white !important;
     }
-    </style>
+    </style>"""
     ,
     unsafe_allow_html=True
 )
