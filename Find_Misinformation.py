@@ -101,7 +101,7 @@ st.markdown("""
  
     /* Set background image */
     .stApp {
-        background-image: url("https://store-images.microsoft.com/image/apps.57874.9007199266244427.12d00104-ac5d-4406-ad7b-66f678d54e19.e9fa7d2a-16a1-437c-bbd5-cf0e4e2d2c70");
+        background-image: url("https://github.com/SayanDas97/Twitter/blob/main/Twitter-1-1.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
