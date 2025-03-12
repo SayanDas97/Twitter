@@ -190,9 +190,10 @@ data = {
     "VA_Freshness_Score": [0.8]
 }
 df_data = pd.DataFrame(data)
-        # Make prediction using the SVM model
-#svm_model = load_model()
 """
+        # Make prediction using the SVM model
+svm_model = load_model()
+
 # Prepare the input for the SVM model
 input_data = pd.DataFrame({
     'Clickbait_Score' : [Clickbait_Score],
