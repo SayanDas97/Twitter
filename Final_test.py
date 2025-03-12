@@ -147,15 +147,16 @@ def process_tweet(tweet_body, joining_date, followers, followings, likes, retwee
     VA_Freshness_Score = round(0.2 if verified_status == 1 else 0.8 * account_age_to_misinfo, 4)
 
     # Prepare the input for the SVM model
-input_data = pd.DataFrame({
-    'Clickbait_Score' : [Clickbait_Score],
-    'Hyperbole_Score' : [Hyperbole_Score],
-    'HC_Sentiment' : [HC_Sentiment],
-    'HC_TER' : [HC_TER],
-    'U_Shaped_FFR' : [U_Shaped_FFR],
-    'VA_Freshness_Score' : [VA_Freshness_Score],
-})        
-return input_data
+    input_data = pd.DataFrame({
+        'Clickbait_Score' : [Clickbait_Score],
+        'Hyperbole_Score' : [Hyperbole_Score],
+        'HC_Sentiment' : [HC_Sentiment],
+        'HC_TER' : [HC_TER],
+        'U_Shaped_FFR' : [U_Shaped_FFR],
+        'VA_Freshness_Score' : [VA_Freshness_Score],
+    })        
+    
+    return input_data
 
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
