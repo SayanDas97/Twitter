@@ -179,7 +179,7 @@ with st.form("twitter_form"):
     # Process the input and display the results
 if submitted:
         # Process the tweet
-        result = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
+        new_data = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 # Load the SVM model
 def load_model():
     with open('svm_model.pkl', 'rb') as file:
@@ -193,7 +193,7 @@ with open('svm_model.pkl', 'rb') as file:
         # Make prediction using the SVM model
 svm_model = load_model()
 
-prediction = svm_model.predict(input_data)
+prediction = svm_model.predict(new_data)
 st.write(prediction)
 
 # Map the prediction to the corresponding class label
