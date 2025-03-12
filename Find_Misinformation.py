@@ -91,7 +91,7 @@ st.markdown("""
 
     /* Title Styling */
     .stApp {
-        background: linear-gradient(to right, #141E30, #243B55);
+        background:#D3D3D3;
         color: white;
         padding: 20px;
         border-radius: 10px;
