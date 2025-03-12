@@ -176,26 +176,17 @@ with st.form("twitter_form"):
     verified_status = st.checkbox("Account Verified?")
     submitted = st.form_submit_button("Submit")
 
-    # Process the input and display the results
-if submitted:
-        # Process the tweet
- new_data = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
 # Load the SVM model
-"""
-def load_model():
-    with open('svm_model.pkl', 'rb') as file:
-        svm_model = pickle.load(file)
-    return svm_model
-"""
 with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
 
-#df_data = pd.DataFrame(data)
-        # Make prediction using the SVM model
-#svm_model = load_model()
 
-prediction = svm_model.predict(new_data)
-st.write(prediction)
+    # Process the input and display the results
+if submitted:
+        # Process the tweet
+   new_data = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
+   prediction = svm_model.predict(new_data)
+   st.write(prediction)
 
 # Map the prediction to the corresponding class label
 class_labels = ['Low', 'No', 'Moderate', 'High']
