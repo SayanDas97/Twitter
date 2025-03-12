@@ -202,7 +202,7 @@ input_data = pd.DataFrame({
     'U_Shaped_FFR' : [U_Shaped_FFR],
     'VA_Freshness_Score' : [VA_Freshness_Score],
 })
-prediction = svm_model.predict(df_data)
+prediction = svm_model.predict(input_data)
 st.write(prediction)
 
 # Map the prediction to the corresponding class label
