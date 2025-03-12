@@ -93,7 +93,7 @@ st.markdown(
     .stApp {
         background: linear-gradient(to right, #141E30, #243B55);
         color: white;
-        padding: 20px;
+        padding: 20px 20px 20px 20px;
         border-radius: 10px;
         text-align: center;
         font-size: 50px;
