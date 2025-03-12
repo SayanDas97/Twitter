@@ -190,6 +190,6 @@ if submitted:
 
 # Display the prediction result with class levels
 st.subheader("Misinformation Prediction")
-# st.write(f"**Predicted Misinformation Level:** {predicted_class}")
+st.write(f"**Predicted Misinformation Level:** {predicted_class}")
 
 
