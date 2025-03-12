@@ -139,7 +139,7 @@ st.markdown("""
         box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         text-align: center;
         font-weight: bold;
-        color: red;
+        color: black;
     }
      label {
         font-size:30px !important;
