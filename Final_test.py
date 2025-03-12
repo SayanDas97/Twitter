@@ -73,7 +73,7 @@ def sentiment_vader(text):
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
     # Create a dictionary to store the results
     input_data = {}
-
+{
     # Count the number of words in the tweet
     word_count = len(str(tweet_body).split())
 
@@ -157,7 +157,7 @@ input_data = pd.DataFrame({
 })
         
 return input_data
-
+}
 # Streamlit UI
 st.title("Twitter Misinformation Detection")
 
