@@ -22,20 +22,13 @@ def count_hashtags(text): [...]
 def count_emojis(text): [...]
 def sentiment_vader(text): [...]
 def process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status):
-    try:
-        # Ensure all numeric inputs are valid
-        if not all(isinstance(x, (int, float)) for x in [followers, followings, likes, retweets, comments, quotes, views]):
-            raise ValueError("Invalid numeric input. Please check the input values.")
+    # Some processing logic
+    processed_tweet = some_processing_logic(tweet)
 
-        # Ensure joining_date is a valid date
-        joining_date = pd.to_datetime(joining_date)
-        if pd.isnull(joining_date):
-            raise ValueError("Invalid joining date.")
+    if processed_tweet is None:
+        print("Warning: Tweet processing failed!")
+    return processed_tweet
 
-        # Rest of the function code...
-    except Exception as e:
-        st.error(f"Error in process_tweet: {e}")
-        return None
 
 # Streamlit UI with custom HTML and CSS
 st.markdown(
