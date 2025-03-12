@@ -85,13 +85,13 @@ st.markdown("""
      <style>
     /* Background Styling */
     body {
-        background-color: #D3D3D3;
+        background-color: pale cream;
         font-family: Arial, sans-serif;
     }
 
     /* Title Styling */
     .stApp {
-        background:#D3D3D3;
+        background: linear-gradient(to right, #141E30, #243B55);
         color: white;
         padding: 20px;
         border-radius: 10px;
