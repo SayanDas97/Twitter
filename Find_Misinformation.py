@@ -144,9 +144,9 @@ st.markdown("""
         color: black;
     }
      label {
-        font-size: 50px !important;
-        font-weight: bold !important;
-        color: white !important;
+        font-size:70px !important;
+        font-weight:bold !important;
+        color:white !important;
     }
     </style>
     """,
