@@ -100,7 +100,7 @@ st.markdown("""
 
     /* Headers */
     h1, h2, h3 {
-        color: white;
+        color: black;
         font-weight: bold;
         text-align: center;
     }
@@ -109,7 +109,7 @@ st.markdown("""
     textarea, input[type="number"], input[type="date"] {
         border: 2px solid black;
         font-weight: bold;
-        color: black;
+        color: white;
     }
 
     /* Submit Button Styling */
