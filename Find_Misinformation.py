@@ -96,7 +96,8 @@ st.markdown("""
         padding: 20px;
         border-radius: 10px;
         text-align: center;
-        font-size: 30px;
+        font-size: 50px;
+    
     }
 
     /* Headers */
