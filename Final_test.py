@@ -180,7 +180,7 @@ def load_model():
 with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
 
-df_data = pd.DataFrame(data)
+#df_data = pd.DataFrame(data)
         # Make prediction using the SVM model
 svm_model = load_model()
 
