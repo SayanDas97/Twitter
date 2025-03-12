@@ -104,6 +104,7 @@ st.markdown("""
     h1, h2, h3 {
         color: black;
         font-weight: bold;
+        font-size: 30px;
         text-align: center;
     }
 
