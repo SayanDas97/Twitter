@@ -179,17 +179,7 @@ def load_model():
 
 with open('svm_model.pkl', 'rb') as file:
         svm_model = pickle.load(file)
-    
-"""
-data = {
-    "Clickbait_Score": [0.3],
-    "Hyperbole_Score": [0.8], 
-    "HC_Sentiment": [0.6],
-    "HC_TER": [0.9],
-    "U_Shaped_FFR": [0.3],
-    "VA_Freshness_Score": [0.8]
-}
-"""
+
 df_data = pd.DataFrame(data)
         # Make prediction using the SVM model
 svm_model = load_model()
