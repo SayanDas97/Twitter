@@ -86,6 +86,7 @@ with open('svm_model.pkl', 'rb') as file:
 # Process the input and display the results
 if submitted:
     new_data = process_tweet(tweet_body, joining_date, followers, followings, likes, retweets, comments, quotes, views, verified_status)
+    st.write("Processed Data Shape:", new_data.shape)  # Debugging: Check the shape
     prediction = svm_model.predict(new_data)
     
     # Display prediction with custom styling
